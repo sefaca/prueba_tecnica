@@ -1,9 +1,14 @@
 import styled from 'styled-components/native';
-import Text from '../Text';
+import Text from '../../components/Text';
 
-export const TitleText = styled(Text).attrs({variant: 'title1'})`
-  color: ${({theme}) => theme.colors.white};
-  padding-top: ${({theme}) => theme.device.safeTop};
+export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.background};
-  text-align: center;
+  padding-top: ${({theme}) => theme.device.safeTop};
+  align-items: center;
+`;
+
+export const TitleText = styled(Text).attrs({
+  variant: 'title1',
+})`
+  color: ${({theme}) => theme.colors.white};
 `;

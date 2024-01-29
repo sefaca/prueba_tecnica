@@ -1,3 +1,4 @@
+import React from 'react';
 import type {FC} from 'react';
 import {ScrollView} from 'react-native';
 import {memo} from 'react';

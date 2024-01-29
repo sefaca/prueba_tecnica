@@ -3,16 +3,14 @@ import Text from '../../Text';
 import {Image} from 'react-native';
 
 export const Container = styled.View`
-  display: flex;
   flex-direction: row;
-  width: 46%;
+  width: 48%;
   background-color: ${({theme}) => theme.colors.purpleMiddle};
-  margin: 10px 20px 5px 20px;
   border-radius: 8px;
+  margin-right: 13px;
 `;
 
 export const ItemContainer = styled.View`
-  display: flex;
   flex-direction: column;
   width: 100%;
 `;
@@ -44,4 +42,9 @@ export const NameAuthor = styled(Text).attrs({
   color: ${({theme}) => theme.colors.softWhite};
   padding: 0px 15px 5px 15px;
   margin-bottom: 5px;
+`;
+
+export const CardsSeparator = styled.View`
+  height: 10px;
+  width: 100%;
 `;

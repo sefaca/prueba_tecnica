@@ -1,3 +1,4 @@
+import React from 'react';
 import {forwardRef, memo} from 'react';
 import type {Text as NativeText} from 'react-native';
 import {Text as BaseText} from './styles';

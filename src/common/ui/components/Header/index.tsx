@@ -1,14 +1,13 @@
 import {FC} from 'react';
 import React from 'react';
-import {View} from 'react-native';
-import {TitleText} from './styles';
+import {Container, TitleText} from './styles';
 import type {Props} from './types';
 
 const Header: FC<Props> = ({title}) => {
   return (
-    <View>
+    <Container>
       <TitleText>{title}</TitleText>
-    </View>
+    </Container>
   );
 };
 

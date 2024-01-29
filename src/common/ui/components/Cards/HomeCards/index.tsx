@@ -1,3 +1,4 @@
+import React from 'react';
 import type {FC} from 'react';
 import {memo} from 'react';
 import {
@@ -10,17 +11,10 @@ import {
 } from './styles';
 import type {Props} from './types';
 
-const HomeCards: FC<Props> = ({
-  title,
-  description,
-  name,
-  onPress,
-  variant,
-  style,
-}) => {
+const HomeCards: FC<Props> = ({title, description, name, style}) => {
   return (
     <Container>
-      <ItemContainer variant={variant} style={style} onPress={onPress}>
+      <ItemContainer style={style}>
         <ImageCardHorizontal
           source={require('../../../../../assets/images/svq.webp')}
         />
