@@ -1,4 +1,4 @@
-export const buttonsDATA = [
+export const BUTTONS_DATA = [
   {
     id: 'all',
     title: 'All',
@@ -25,9 +25,10 @@ export const buttonsDATA = [
   },
 ];
 
-export const cardsVerticalDATA = [
+export const CARDS_VERTICAL_DATA = [
   {
     id: '1',
+    image: require('../../assets/images/svq.webp'),
     title: 'Mindfulness',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
@@ -35,6 +36,7 @@ export const cardsVerticalDATA = [
   },
   {
     id: '2',
+    image: require('../../assets/images/svq.webp'),
     title: 'Mindfulness',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
@@ -42,6 +44,7 @@ export const cardsVerticalDATA = [
   },
   {
     id: '3',
+    image: require('../../assets/images/svq.webp'),
     title: 'Mindfulness',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
@@ -49,6 +52,7 @@ export const cardsVerticalDATA = [
   },
   {
     id: '4',
+    image: require('../../assets/images/svq.webp'),
     title: 'Mindfulness',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
@@ -56,6 +60,7 @@ export const cardsVerticalDATA = [
   },
   {
     id: '5',
+    image: require('../../assets/images/svq.webp'),
     title: 'Mindfulness',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
@@ -63,6 +68,7 @@ export const cardsVerticalDATA = [
   },
   {
     id: '6',
+    image: require('../../assets/images/svq.webp'),
     title: 'Mindfulness',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
@@ -70,6 +76,7 @@ export const cardsVerticalDATA = [
   },
   {
     id: '7',
+    image: require('../../assets/images/svq.webp'),
     title: 'Mindfulness',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',

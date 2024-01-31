@@ -3,16 +3,11 @@ import Text from '../../Text';
 import {Image} from 'react-native';
 
 export const Container = styled.View`
-  flex-direction: row;
+  flex-direction: column;
   width: 48%;
   background-color: ${({theme}) => theme.colors.purpleMiddle};
   border-radius: 8px;
   margin-right: 13px;
-`;
-
-export const ItemContainer = styled.View`
-  flex-direction: column;
-  width: 100%;
 `;
 
 export const ImageCardHorizontal = styled(Image)`

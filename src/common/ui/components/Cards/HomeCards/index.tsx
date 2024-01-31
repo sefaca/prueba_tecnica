@@ -3,7 +3,6 @@ import type {FC} from 'react';
 import {memo} from 'react';
 import {
   Container,
-  ItemContainer,
   NameAuthor,
   TextDescrition,
   TitleCategory,
@@ -11,17 +10,13 @@ import {
 } from './styles';
 import type {Props} from './types';
 
-const HomeCards: FC<Props> = ({title, description, name, style}) => {
+const HomeCards: FC<Props> = ({image, title, description, name, style}) => {
   return (
-    <Container>
-      <ItemContainer style={style}>
-        <ImageCardHorizontal
-          source={require('../../../../../assets/images/svq.webp')}
-        />
-        <TitleCategory>{title}</TitleCategory>
-        <TextDescrition>{description}</TextDescrition>
-        <NameAuthor>{name}</NameAuthor>
-      </ItemContainer>
+    <Container style={style}>
+      <ImageCardHorizontal source={image} />
+      <TitleCategory>{title}</TitleCategory>
+      <TextDescrition>{description}</TextDescrition>
+      <NameAuthor>{name}</NameAuthor>
     </Container>
   );
 };

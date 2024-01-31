@@ -4,10 +4,7 @@ import {TouchableOpacity} from 'react-native';
 import type {ContainerProps} from './types';
 
 export const Container = styled.View<ContainerProps>`
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 15px;
   border-radius: 12px;
   background-color: ${({theme}) => theme.colors.primary};
   ${({disabled}) => disabled && disabledContainerStyle};
