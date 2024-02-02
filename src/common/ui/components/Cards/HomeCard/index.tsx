@@ -10,7 +10,7 @@ import {
 } from './styles';
 import type {Props} from './types';
 
-const HomeCards: FC<Props> = ({image, title, description, name, style}) => {
+const HomeCard: FC<Props> = ({image, title, description, name, style}) => {
   return (
     <Container style={style}>
       <ImageCardHorizontal source={image} />
@@ -21,4 +21,4 @@ const HomeCards: FC<Props> = ({image, title, description, name, style}) => {
   );
 };
 
-export default memo(HomeCards);
+export default memo(HomeCard);
