@@ -1,10 +1,3 @@
-import type {ImageSourcePropType, StyleProp, ViewStyle} from 'react-native';
+import type {Props as HomeCardProps} from '../HomeCard/types';
 
-export type Props = {
-  id: string;
-  image: ImageSourcePropType;
-  title: string;
-  description: string;
-  name: string;
-  style?: StyleProp<ViewStyle>;
-};
+export type Props = HomeCardProps;

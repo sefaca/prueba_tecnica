@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback} from 'react';
 import StatusBar from '../../common/ui/components/StatusBar';
 import Header from '../../common/ui/components/Header/index';
 import Button from '../../common/ui/components/Button';
@@ -15,37 +15,23 @@ import {
   CARDS_HORIZONTAL_DATA,
   CARDS_VERTICAL_DATA,
 } from './constants';
-import {CardsSeparator} from '../../common/ui/components/Cards/HomeCard/styles';
 import type {RenderCardParams, RenderButtonParams} from './types';
 import useViewModelDefault from './viewmodel';
 import HorizontalCard from '../../common/ui/components/Cards/HorizontalCard';
 
 const Home = ({useViewModel = useViewModelDefault}) => {
-  const {buttonId, handlePressButton} = useViewModel();
-  const [showHorizontalCards, setShowHorizontalCards] = useState(false);
-  const [showVerticalCards, setShowVerticalCards] = useState(true);
+  const {buttonId, handlePressButton, showVerticalCards, showHorizontalCards} =
+    useViewModel();
 
   const renderItemButton = useCallback(
-    ({item}: RenderButtonParams) => {
-      const isAllButton = item.id === 'all';
-
-      const onPress = () => {
-        handlePressButton(item.id);
-
-        setShowHorizontalCards(!isAllButton);
-
-        setShowVerticalCards(isAllButton);
-      };
-
-      return (
-        <Button
-          id={item.id}
-          title={item.title}
-          actived={item.id === buttonId}
-          onPress={onPress}
-        />
-      );
-    },
+    ({item}: RenderButtonParams) => (
+      <Button
+        id={item.id}
+        title={item.title}
+        actived={item.id === buttonId}
+        onPress={handlePressButton}
+      />
+    ),
     [buttonId, handlePressButton],
   );
 
@@ -55,7 +41,7 @@ const Home = ({useViewModel = useViewModelDefault}) => {
         id={item.id}
         image={item.image}
         title={item.title}
-        description={item.description}
+        titleDescription={item.titleDescription}
         name={item.name}
       />
     ),
@@ -68,7 +54,7 @@ const Home = ({useViewModel = useViewModelDefault}) => {
         id={item.id}
         image={item.image}
         title={item.title}
-        description={item.description}
+        titleDescription={item.titleDescription}
         name={item.name}
       />
     ),
@@ -94,7 +80,6 @@ const Home = ({useViewModel = useViewModelDefault}) => {
           renderItem={renderItemCard}
           keyExtractor={item => item.id}
           numColumns={2}
-          ItemSeparatorComponent={CardsSeparator}
           style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
         />
@@ -104,7 +89,6 @@ const Home = ({useViewModel = useViewModelDefault}) => {
           data={CARDS_HORIZONTAL_DATA}
           renderItem={renderItemHorizontalCard}
           keyExtractor={item => item.id}
-          ItemSeparatorComponent={CardsSeparator}
           style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
         />

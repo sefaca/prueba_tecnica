@@ -1,12 +1,37 @@
-import {FC} from 'react';
-import React from 'react';
-import {Container, TitleText} from './styles';
+import React, {FC} from 'react';
+import IconButton from '../IconButton';
+import {
+  Container,
+  TitleText,
+  LeftAction,
+  CenterAction,
+  RightAction,
+} from './styles';
 import type {Props} from './types';
 
-const Header: FC<Props> = ({title}) => {
+const Header: FC<Props> = ({
+  title,
+  leftIcon,
+  rightIcon,
+  sizeIcon,
+  onPressLeft,
+  onPressRight,
+}) => {
   return (
     <Container>
-      <TitleText>{title}</TitleText>
+      <LeftAction>
+        {!!leftIcon && (
+          <IconButton icon={leftIcon} onPress={onPressLeft} size={sizeIcon} />
+        )}
+      </LeftAction>
+      <CenterAction>
+        <TitleText>{title}</TitleText>
+      </CenterAction>
+      <RightAction>
+        {!!rightIcon && (
+          <IconButton icon={rightIcon} onPress={onPressRight} size={sizeIcon} />
+        )}
+      </RightAction>
     </Container>
   );
 };

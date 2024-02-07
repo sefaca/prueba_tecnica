@@ -1,10 +1,11 @@
-import type {StyleProp, ViewStyle} from 'react-native';
+import type {ImageSourcePropType, StyleProp, ViewStyle} from 'react-native';
 
 export type Props = {
   id: string;
-  image: any;
+  image: ImageSourcePropType;
   title: string;
   titleDescription: string;
   name: string;
+  description: string;
   style?: StyleProp<ViewStyle>;
 };

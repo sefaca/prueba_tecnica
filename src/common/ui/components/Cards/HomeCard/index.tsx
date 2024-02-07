@@ -10,12 +10,12 @@ import {
 } from './styles';
 import type {Props} from './types';
 
-const HomeCard: FC<Props> = ({image, title, description, name, style}) => {
+const HomeCard: FC<Props> = ({image, title, titleDescription, name, style}) => {
   return (
     <Container style={style}>
       <ImageCardHorizontal source={image} />
       <TitleCategory>{title}</TitleCategory>
-      <TextDescrition>{description}</TextDescrition>
+      <TextDescrition>{titleDescription}</TextDescrition>
       <NameAuthor>{name}</NameAuthor>
     </Container>
   );

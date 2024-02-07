@@ -15,7 +15,7 @@ import {TouchableOpacity} from 'react-native';
 const HorizontalCard: FC<Props> = ({
   image,
   title,
-  description,
+  titleDescription,
   name,
   style,
 }) => {
@@ -25,7 +25,7 @@ const HorizontalCard: FC<Props> = ({
         <ImageCardHorizontal source={image} />
         <ContainerData>
           <TitleCategory>{title}</TitleCategory>
-          <TextDescrition numberOfLines={2}>{description}</TextDescrition>
+          <TextDescrition numberOfLines={2}>{titleDescription}</TextDescrition>
           <NameAuthor>{name}</NameAuthor>
         </ContainerData>
       </Container>
