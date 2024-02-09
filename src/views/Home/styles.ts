@@ -1,8 +1,16 @@
 import styled from 'styled-components/native';
-import Text from '../../common/ui/components/Text';
 
-export const TitleText = styled(Text).attrs({
-  variant: 'title1',
-})`
-  color: ${({theme}) => theme.colors.primary};
+export const Container = styled.View`
+  background-color: ${({theme}) => theme.colors.background};
+  flex: 1;
+  padding-bottom: 20px;
 `;
+
+export const flatListStyleButtons = {
+  padding: 20,
+};
+
+export const flatListStyleCards = {
+  marginLeft: 20,
+  marginRight: 20,
+};
