@@ -3,6 +3,7 @@ import Text from '../../common/ui/components/Text';
 import {Image} from 'react-native';
 
 export const Container = styled.View`
+  flex: 1;
   background-color: ${({theme}) => theme.colors.background};
   padding-bottom: 20px;
 `;

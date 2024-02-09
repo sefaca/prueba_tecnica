@@ -1,12 +1,11 @@
 import styled from 'styled-components/native';
-// import {BorderlessButton} from 'react-native-gesture-handler';
-import type {ContainerProps} from './types';
+import {TouchableOpacity} from 'react-native';
 
-export const Container = styled.View<ContainerProps>`
+export const Container = styled(TouchableOpacity)`
   justify-content: center;
   align-items: center;
-  width: ${({size}) => size}px;
-  border-radius: ${({size}) => size / 2}px;
+  width: 35px;
+  border-radius: 20px;
   aspect-ratio: 1;
   background-color: ${({theme: {colors}}) => colors.background};
 `;

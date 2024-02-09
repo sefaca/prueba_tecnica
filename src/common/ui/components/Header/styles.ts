@@ -25,6 +25,5 @@ export const TitleText = styled(Text).attrs({
 
 export const RightAction = styled.View`
   flex: 1;
-  flex-direction: row;
-  justify-content: flex-end;
+  align-items: flex-end;
 `;

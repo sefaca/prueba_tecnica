@@ -7,8 +7,8 @@ export const Container = styled.View`
   flex-direction: row;
   background-color: ${({theme}) => theme.colors.purpleMiddle};
   border-radius: 8px;
-  margin-right: 13px;
   margin-bottom: 10px;
+  padding-right: 10px;
 `;
 
 export const ImageCardHorizontal = styled(Image)`

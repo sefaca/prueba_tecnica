@@ -4,14 +4,8 @@ import Icon from '../Icon/';
 import {Container} from './styles';
 import type {Props} from './types';
 
-const IconButton: FC<Props> = ({
-  color,
-  icon,
-  size = 35,
-  containerSize,
-  style,
-}) => (
-  <Container size={containerSize ?? size} style={style}>
+const IconButton: FC<Props> = ({color, icon, size = 35, style, onPress}) => (
+  <Container onPress={onPress} style={style}>
     <Icon name={icon} size={size} color={color} />
   </Container>
 );

@@ -3,7 +3,8 @@ import Text from '../../Text';
 import {Image} from 'react-native';
 
 export const Container = styled.View`
-  width: 48%;
+  width: 170px;
+  height: 360px;
   background-color: ${({theme}) => theme.colors.purpleMiddle};
   border-radius: 8px;
   margin-right: 13px;
@@ -35,6 +36,7 @@ export const NameAuthor = styled(Text).attrs({
   variant: 'body2',
 })`
   color: ${({theme}) => theme.colors.softWhite};
-  padding: 0 15px 5px 15px;
+  padding: 330px 15px 5px 15px;
   margin-bottom: 5px;
+  position: absolute;
 `;
