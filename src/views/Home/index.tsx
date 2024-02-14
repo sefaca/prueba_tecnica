@@ -9,19 +9,24 @@ import {
   menuHorizontalSeparator,
 } from './styles';
 import HomeCard from '../../common/ui/components/Cards/HomeCard';
-import {FlatList} from 'react-native';
-import {
-  BUTTONS_DATA,
-  CARDS_HORIZONTAL_DATA,
-  CARDS_VERTICAL_DATA,
-} from './constants';
+import {FlatList, Text} from 'react-native';
+import {BUTTONS_DATA} from './constants';
 import type {RenderCardParams, RenderButtonParams} from './types';
 import useViewModelDefault from './viewmodel';
 import HorizontalCard from '../../common/ui/components/Cards/HorizontalCard';
+import {useQuery} from '@apollo/client';
+import {GET_ITEMS} from '../../common/data/apollo/generated/nodes';
 
 const Home = ({useViewModel = useViewModelDefault}) => {
-  const {buttonId, handlePressButton, showVerticalCards, showHorizontalCards} =
-    useViewModel();
+  const {
+    buttonId,
+    handlePressButton,
+    showVerticalCards,
+    showHorizontalCards,
+    showPruebaFiltro,
+  } = useViewModel();
+
+  const {loading, error, data} = useQuery(GET_ITEMS);
 
   const renderItemButton = useCallback(
     ({item}: RenderButtonParams) => (
@@ -40,9 +45,10 @@ const Home = ({useViewModel = useViewModelDefault}) => {
       <HomeCard
         id={item.id}
         image={item.image}
+        category={item.category.title}
         title={item.title}
-        titleDescription={item.titleDescription}
-        name={item.name}
+        content={item.content}
+        author={item.author}
       />
     ),
     [],
@@ -53,13 +59,24 @@ const Home = ({useViewModel = useViewModelDefault}) => {
       <HorizontalCard
         id={item.id}
         image={item.image}
+        category={item.category.title}
         title={item.title}
-        titleDescription={item.titleDescription}
-        name={item.name}
+        content={item.content}
+        author={item.author}
       />
     ),
     [],
   );
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error) {
+    return <Text>Error: {error.message}</Text>;
+  }
+
+  const apiData = data?.items || [];
 
   return (
     <Container>
@@ -76,7 +93,7 @@ const Home = ({useViewModel = useViewModelDefault}) => {
       />
       {showVerticalCards && (
         <FlatList
-          data={CARDS_VERTICAL_DATA}
+          data={apiData}
           renderItem={renderItemCard}
           keyExtractor={item => item.id}
           numColumns={2}
@@ -84,9 +101,9 @@ const Home = ({useViewModel = useViewModelDefault}) => {
           showsVerticalScrollIndicator={false}
         />
       )}
-      {showHorizontalCards && (
+      {showHorizontalCards && showPruebaFiltro && (
         <FlatList
-          data={CARDS_HORIZONTAL_DATA}
+          data={apiData}
           renderItem={renderItemHorizontalCard}
           keyExtractor={item => item.id}
           style={flatListStyleCards}

@@ -10,36 +10,33 @@ import {
 } from './styles';
 import type {Props} from './types';
 import {TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import type {StackParamList} from '../../../../../core/navigation/Tabs/index';
+import useViewModel from '../../../../../views/Home/viewmodel';
 
-const HomeCard: FC<Props> = ({
-  id,
-  image,
-  title,
-  titleDescription,
-  name,
-  style,
-}) => {
-  const navigation = useNavigation<StackNavigationProp<StackParamList>>();
+const HomeCard: FC<Props> = ({id, category, title, author, content, style}) => {
+  const {handlePressButton, navigation} = useViewModel();
   const handlePress = () => {
+    const imageUrl = `https://picsum.photos/300/300?random=${id}`;
+    handlePressButton(id);
     navigation.navigate('Detail', {
       id,
-      image,
+      image: imageUrl,
+      category,
       title,
-      titleDescription,
-      name,
+      content,
+      author,
     });
   };
 
+  console.log(id);
   return (
     <TouchableOpacity onPress={handlePress}>
       <Container style={style}>
-        <ImageCardHorizontal source={image} />
-        <TitleCategory>{title}</TitleCategory>
-        <TextDescrition>{titleDescription}</TextDescrition>
-        <NameAuthor>{name}</NameAuthor>
+        <ImageCardHorizontal
+          source={{uri: 'https://picsum.photos/id/2/200/300'}}
+        />
+        <TitleCategory>{category}</TitleCategory>
+        <TextDescrition>{title}</TextDescrition>
+        <NameAuthor>{author}</NameAuthor>
       </Container>
     </TouchableOpacity>
   );
