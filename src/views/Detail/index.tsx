@@ -12,7 +12,7 @@ import {
   MainDescription,
 } from './styles';
 
-import {ScrollView} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 import useViewModelDefault from './viewmodel';
 
 const Detail = ({useViewModel = useViewModelDefault}) => {
@@ -36,6 +36,9 @@ const Detail = ({useViewModel = useViewModelDefault}) => {
           <NameAuthor>{author}</NameAuthor>
           <ImageDetail source={{uri: image}} />
           <MainDescription>{content}</MainDescription>
+          <Text style={{textAlign: 'center', marginTop: 20, color: 'gray'}}>
+            Texto adicional debajo de la pantalla
+          </Text>
         </MainContainer>
       </ScrollView>
     </Container>

@@ -1,6 +1,7 @@
 import type {FC} from 'react';
 import Cross from './Cross';
 import Heart from './Heart';
+import Arrow from './Arrow';
 import type {IconProps} from './types';
 
 const createSvgIcons = <T extends {[name: string]: FC<IconProps>}>(
@@ -10,4 +11,5 @@ const createSvgIcons = <T extends {[name: string]: FC<IconProps>}>(
 export const icons = createSvgIcons({
   cross: Cross,
   heart: Heart,
+  arrow: Arrow,
 });

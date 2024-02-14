@@ -23,7 +23,7 @@ const Home = ({useViewModel = useViewModelDefault}) => {
     handlePressButton,
     showVerticalCards,
     showHorizontalCards,
-    showPruebaFiltro,
+    // selectedCategory,
   } = useViewModel();
 
   const {loading, error, data} = useQuery(GET_ITEMS);
@@ -34,17 +34,19 @@ const Home = ({useViewModel = useViewModelDefault}) => {
         id={item.id}
         title={item.title}
         actived={item.id === buttonId}
-        onPress={handlePressButton}
+        onPress={() => {
+          handlePressButton(item.id);
+        }}
       />
     ),
     [buttonId, handlePressButton],
   );
 
   const renderItemCard = useCallback(
-    ({item}: RenderCardParams) => (
+    ({item, index}: RenderCardParams) => (
       <HomeCard
         id={item.id}
-        image={item.image}
+        image={`https://picsum.photos/id/${index}/200/200`}
         category={item.category.title}
         title={item.title}
         content={item.content}
@@ -55,10 +57,10 @@ const Home = ({useViewModel = useViewModelDefault}) => {
   );
 
   const renderItemHorizontalCard = useCallback(
-    ({item}: RenderCardParams) => (
+    ({item, index}: RenderCardParams) => (
       <HorizontalCard
         id={item.id}
-        image={item.image}
+        image={`https://picsum.photos/id/${index}/150/150`}
         category={item.category.title}
         title={item.title}
         content={item.content}
@@ -77,6 +79,10 @@ const Home = ({useViewModel = useViewModelDefault}) => {
   }
 
   const apiData = data?.items || [];
+  // const filteredData =
+  //   selectedCategory === 'mindfulness'
+  //     ? apiData
+  //     : apiData.filter(item => item.category.title === selectedCategory);
 
   return (
     <Container>
@@ -101,7 +107,7 @@ const Home = ({useViewModel = useViewModelDefault}) => {
           showsVerticalScrollIndicator={false}
         />
       )}
-      {showHorizontalCards && showPruebaFiltro && (
+      {showHorizontalCards && (
         <FlatList
           data={apiData}
           renderItem={renderItemHorizontalCard}

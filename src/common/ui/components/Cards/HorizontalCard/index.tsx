@@ -15,6 +15,7 @@ import useViewModel from '../../../../../views/Home/viewmodel';
 
 const HorizontalCard: FC<Props> = ({
   id,
+  image,
   category,
   title,
   author,
@@ -23,11 +24,10 @@ const HorizontalCard: FC<Props> = ({
 }) => {
   const {handlePressButton, navigation} = useViewModel();
   const handlePress = () => {
-    const imageUrl = `https://picsum.photos/300/300?random=${id}`;
     handlePressButton(id);
     navigation.navigate('Detail', {
       id,
-      image: imageUrl,
+      image,
       category,
       title,
       content,
@@ -38,9 +38,7 @@ const HorizontalCard: FC<Props> = ({
   return (
     <TouchableOpacity onPress={handlePress}>
       <Container style={style}>
-        <ImageCardHorizontal
-          source={{uri: `https://picsum.photos/150/150?random=${id}`}}
-        />
+        <ImageCardHorizontal source={{uri: image}} />
         <ContainerData>
           <TitleCategory>{category}</TitleCategory>
           <TextDescrition numberOfLines={2}>{title}</TextDescrition>

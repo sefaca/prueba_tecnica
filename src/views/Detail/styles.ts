@@ -47,3 +47,7 @@ export const MainDescription = styled(Text).attrs({
   color: ${({theme}) => theme.colors.white};
   padding: 20px 15px 20px 15px;
 `;
+
+export const ArrowContainer = styled.View`
+  padding: 0 20px 70px 20px;
+`;

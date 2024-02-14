@@ -6,7 +6,8 @@ const useViewModel = () => {
   const [buttonId, setButtonId] = useState('');
   const [showHorizontalCards, setShowHorizontalCards] = useState(false);
   const [showVerticalCards, setShowVerticalCards] = useState(true);
-  const [showPruebaFiltro, setPruebaFiltro] = useState(false);
+  // const [showPruebaFiltro, setPruebaFiltro] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   const navigation = useNavigation<StackNavigationProp<StackParamList>>();
 
@@ -14,7 +15,9 @@ const useViewModel = () => {
     setButtonId(id);
     setShowHorizontalCards(id !== 'all');
     setShowVerticalCards(id === 'all');
-    setPruebaFiltro(id === 'mindfulness');
+    // setPruebaFiltro(id === 'mindfulness');
+    setSelectedCategory(id);
+    console.log('Button pressed with id:', id);
   }, []);
 
   return {
@@ -23,7 +26,8 @@ const useViewModel = () => {
     handlePressButton,
     showHorizontalCards,
     showVerticalCards,
-    showPruebaFiltro,
+    // showPruebaFiltro,
+    selectedCategory,
   };
 };
 

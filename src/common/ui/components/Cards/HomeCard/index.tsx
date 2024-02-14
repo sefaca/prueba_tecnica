@@ -12,14 +12,22 @@ import type {Props} from './types';
 import {TouchableOpacity} from 'react-native';
 import useViewModel from '../../../../../views/Home/viewmodel';
 
-const HomeCard: FC<Props> = ({id, category, title, author, content, style}) => {
+const HomeCard: FC<Props> = ({
+  id,
+  image,
+  category,
+  title,
+  author,
+  content,
+  style,
+}) => {
   const {handlePressButton, navigation} = useViewModel();
+
   const handlePress = () => {
-    const imageUrl = `https://picsum.photos/300/300?random=${id}`;
     handlePressButton(id);
     navigation.navigate('Detail', {
       id,
-      image: imageUrl,
+      image,
       category,
       title,
       content,
@@ -27,13 +35,10 @@ const HomeCard: FC<Props> = ({id, category, title, author, content, style}) => {
     });
   };
 
-  console.log(id);
   return (
     <TouchableOpacity onPress={handlePress}>
       <Container style={style}>
-        <ImageCardHorizontal
-          source={{uri: 'https://picsum.photos/id/2/200/300'}}
-        />
+        <ImageCardHorizontal source={{uri: image}} />
         <TitleCategory>{category}</TitleCategory>
         <TextDescrition>{title}</TextDescrition>
         <NameAuthor>{author}</NameAuthor>
