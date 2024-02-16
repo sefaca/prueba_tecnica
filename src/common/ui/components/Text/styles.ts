@@ -22,12 +22,21 @@ const variantStyles: Record<Variant, ReturnType<typeof css>> = {
     font-size: 24px;
     line-height: 33.6px;
   `,
+  title4: css`
+    font-size: 35px;
+    font-weight: bold;
+  `,
   body1: css`
     font-size: 20px;
     font-weight: bold;
   `,
   body2: css`
     font-size: 15px;
+  `,
+  body3: css`
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    line-height: 35px;
   `,
 };
 

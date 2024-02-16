@@ -4,7 +4,8 @@ export type Props = {
   id: string;
   image: ImageSourcePropType;
   title: string;
-  description: string;
+  titleDescription: string;
   name: string;
+  description: string;
   style?: StyleProp<ViewStyle>;
 };

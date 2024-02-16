@@ -3,11 +3,12 @@ import Text from '../../Text';
 import {Image} from 'react-native';
 
 export const Container = styled.View`
-  flex-direction: column;
-  width: 48%;
+  width: 170px;
+  height: 360px;
   background-color: ${({theme}) => theme.colors.purpleMiddle};
   border-radius: 8px;
   margin-right: 13px;
+  margin-bottom: 20px;
 `;
 
 export const ImageCardHorizontal = styled(Image)`
@@ -28,18 +29,14 @@ export const TextDescrition = styled(Text).attrs({
   variant: 'body1',
 })`
   color: ${({theme}) => theme.colors.white};
-  padding: 0px 15px 5px 15px;
+  padding: 0 15px 5px 15px;
 `;
 
 export const NameAuthor = styled(Text).attrs({
   variant: 'body2',
 })`
   color: ${({theme}) => theme.colors.softWhite};
-  padding: 0px 15px 5px 15px;
+  padding: 330px 15px 5px 15px;
   margin-bottom: 5px;
-`;
-
-export const CardsSeparator = styled.View`
-  height: 10px;
-  width: 100%;
+  position: absolute;
 `;

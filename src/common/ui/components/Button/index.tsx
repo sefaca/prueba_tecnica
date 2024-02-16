@@ -1,17 +1,18 @@
 import React from 'react';
 import type {FC} from 'react';
 import {memo} from 'react';
-import {TouchableOpacity} from 'react-native';
-import {Container, Title, Button} from './styles';
+import {Container, Title} from './styles';
 import type {Props} from './types';
+import useIdCallback from '../../utils/useIdCallback';
 
-const MenuButton: FC<Props> = ({title, disabled = false, style}) => (
-  <TouchableOpacity>
-    <Container disabled={disabled} style={style}>
+const Button: FC<Props> = ({id, title, style, actived = false, onPress}) => {
+  const handleOnPress = useIdCallback(onPress, id);
+
+  return (
+    <Container onPress={handleOnPress} actived={actived} style={style}>
       <Title>{title}</Title>
     </Container>
-    <Button disabled={disabled} />
-  </TouchableOpacity>
-);
+  );
+};
 
-export default memo(MenuButton);
+export default memo(Button);

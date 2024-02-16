@@ -2,27 +2,59 @@ import React, {useCallback} from 'react';
 import StatusBar from '../../common/ui/components/StatusBar';
 import Header from '../../common/ui/components/Header/index';
 import Button from '../../common/ui/components/Button';
-import {Container, flatListStyleButtons, flatListStyleCards} from './styles';
-import HomeCards from '../../common/ui/components/Cards/HomeCards';
+import {
+  Container,
+  flatListStyleButtons,
+  flatListStyleCards,
+  menuHorizontalSeparator,
+} from './styles';
+import HomeCard from '../../common/ui/components/Cards/HomeCard';
 import {FlatList} from 'react-native';
-import {BUTTONS_DATA, CARDS_VERTICAL_DATA} from './constants';
-import {menuHorizontalSeparator} from '../../common/ui/components/MenuHorizontal/styles';
-import {CardsSeparator} from '../../common/ui/components/Cards/HomeCards/styles';
+import {
+  BUTTONS_DATA,
+  CARDS_HORIZONTAL_DATA,
+  CARDS_VERTICAL_DATA,
+} from './constants';
 import type {RenderCardParams, RenderButtonParams} from './types';
+import useViewModelDefault from './viewmodel';
+import HorizontalCard from '../../common/ui/components/Cards/HorizontalCard';
 
-const Home = () => {
+const Home = ({useViewModel = useViewModelDefault}) => {
+  const {buttonId, handlePressButton, showVerticalCards, showHorizontalCards} =
+    useViewModel();
+
   const renderItemButton = useCallback(
-    ({item}: RenderButtonParams) => <Button id={item.id} title={item.title} />,
-    [],
+    ({item}: RenderButtonParams) => (
+      <Button
+        id={item.id}
+        title={item.title}
+        actived={item.id === buttonId}
+        onPress={handlePressButton}
+      />
+    ),
+    [buttonId, handlePressButton],
   );
 
   const renderItemCard = useCallback(
     ({item}: RenderCardParams) => (
-      <HomeCards
+      <HomeCard
         id={item.id}
         image={item.image}
         title={item.title}
-        description={item.description}
+        titleDescription={item.titleDescription}
+        name={item.name}
+      />
+    ),
+    [],
+  );
+
+  const renderItemHorizontalCard = useCallback(
+    ({item}: RenderCardParams) => (
+      <HorizontalCard
+        id={item.id}
+        image={item.image}
+        title={item.title}
+        titleDescription={item.titleDescription}
         name={item.name}
       />
     ),
@@ -42,15 +74,25 @@ const Home = () => {
         style={flatListStyleButtons}
         showsHorizontalScrollIndicator={false}
       />
-      <FlatList
-        data={CARDS_VERTICAL_DATA}
-        renderItem={renderItemCard}
-        keyExtractor={item => item.id}
-        numColumns={2}
-        ItemSeparatorComponent={CardsSeparator}
-        style={flatListStyleCards}
-        showsVerticalScrollIndicator={false}
-      />
+      {showVerticalCards && (
+        <FlatList
+          data={CARDS_VERTICAL_DATA}
+          renderItem={renderItemCard}
+          keyExtractor={item => item.id}
+          numColumns={2}
+          style={flatListStyleCards}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
+      {showHorizontalCards && (
+        <FlatList
+          data={CARDS_HORIZONTAL_DATA}
+          renderItem={renderItemHorizontalCard}
+          keyExtractor={item => item.id}
+          style={flatListStyleCards}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </Container>
   );
 };
