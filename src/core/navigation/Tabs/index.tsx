@@ -13,7 +13,7 @@ const MainNavigation = () => {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{headerShown: false, presentation: 'modal'}}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="Detail"

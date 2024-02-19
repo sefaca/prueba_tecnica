@@ -39,6 +39,7 @@ export const ImageDetail = styled(Image)`
   height: 300px;
   border-radius: 8px;
   padding: 0 0 20px 15px;
+  resizeMode: stretch;
 `;
 
 export const MainDescription = styled(Text).attrs({

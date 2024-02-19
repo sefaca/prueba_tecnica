@@ -6,40 +6,40 @@ import {
   Container,
   flatListStyleButtons,
   flatListStyleCards,
-  menuHorizontalSeparator,
+  MenuHorizontalSeparator,
+  List,
+  MenuList,
 } from './styles';
 import HomeCard from '../../common/ui/components/Cards/HomeCard';
-import {FlatList, Text} from 'react-native';
+import {Text} from 'react-native';
 import {BUTTONS_DATA} from './constants';
 import type {RenderCardParams, RenderButtonParams} from './types';
 import useViewModelDefault from './viewmodel';
 import HorizontalCard from '../../common/ui/components/Cards/HorizontalCard';
-import {useQuery} from '@apollo/client';
-import {GET_ITEMS} from '../../common/data/apollo/generated/nodes';
 
 const Home = ({useViewModel = useViewModelDefault}) => {
   const {
-    buttonId,
+    buttonCategory,
+    filteredItems,
     handlePressButton,
     showVerticalCards,
     showHorizontalCards,
-    // selectedCategory,
+    loading,
+    error,
   } = useViewModel();
-
-  const {loading, error, data} = useQuery(GET_ITEMS);
 
   const renderItemButton = useCallback(
     ({item}: RenderButtonParams) => (
       <Button
         id={item.id}
         title={item.title}
-        actived={item.id === buttonId}
+        actived={item.id === buttonCategory}
         onPress={() => {
           handlePressButton(item.id);
         }}
       />
     ),
-    [buttonId, handlePressButton],
+    [buttonCategory, handlePressButton],
   );
 
   const renderItemCard = useCallback(
@@ -78,42 +78,38 @@ const Home = ({useViewModel = useViewModelDefault}) => {
     return <Text>Error: {error.message}</Text>;
   }
 
-  const apiData = data?.items || [];
-  // const filteredData =
-  //   selectedCategory === 'mindfulness'
-  //     ? apiData
-  //     : apiData.filter(item => item.category.title === selectedCategory);
-
   return (
     <Container>
       <StatusBar />
       <Header title="Learn" />
-      <FlatList
+      <MenuList
         data={BUTTONS_DATA}
         renderItem={renderItemButton}
         keyExtractor={item => item.id}
         horizontal
-        ItemSeparatorComponent={menuHorizontalSeparator}
+        ItemSeparatorComponent={MenuHorizontalSeparator}
         style={flatListStyleButtons}
         showsHorizontalScrollIndicator={false}
       />
       {showVerticalCards && (
-        <FlatList
-          data={apiData}
+        <List
+          data={filteredItems}
           renderItem={renderItemCard}
           keyExtractor={item => item.id}
           numColumns={2}
           style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<Text>ASdsads</Text>}
         />
       )}
       {showHorizontalCards && (
-        <FlatList
-          data={apiData}
+        <List
+          data={filteredItems}
           renderItem={renderItemHorizontalCard}
           keyExtractor={item => item.id}
           style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<Text>Error</Text>}
         />
       )}
     </Container>

@@ -8,7 +8,7 @@ export const BUTTONS_DATA = [
     title: 'Favorites',
   },
   {
-    id: 'harm',
+    id: 'harm reduction',
     title: 'Harm Reduction',
   },
   {
@@ -18,9 +18,5 @@ export const BUTTONS_DATA = [
   {
     id: 'mindfulness',
     title: 'Mindfulness',
-  },
-  {
-    id: 'music',
-    title: 'Music',
   },
 ];

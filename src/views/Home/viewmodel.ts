@@ -1,33 +1,47 @@
+import {useQuery} from '@apollo/client';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useCallback, useState} from 'react';
+import {GET_ITEMS} from '../../common/data/apollo/generated/nodes';
+import {Lesson} from './modal';
 
 const useViewModel = () => {
-  const [buttonId, setButtonId] = useState('');
+  const {loading, error, data} = useQuery(GET_ITEMS);
+
+  const [buttonCategory, setButtonCategory] = useState('');
   const [showHorizontalCards, setShowHorizontalCards] = useState(false);
   const [showVerticalCards, setShowVerticalCards] = useState(true);
-  // const [showPruebaFiltro, setPruebaFiltro] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [filter, setFilter] = useState('all');
 
   const navigation = useNavigation<StackNavigationProp<StackParamList>>();
 
+  const apiData = data?.items || ([] as Lesson[]);
+
+  const filteredItems =
+    filter === 'all'
+      ? apiData
+      : apiData.filter(
+          (item: {category: {title: string}}) =>
+            item.category.title.toLowerCase() === filter.toLowerCase(),
+        );
   const handlePressButton = useCallback((id: string) => {
-    setButtonId(id);
+    setButtonCategory(id);
     setShowHorizontalCards(id !== 'all');
     setShowVerticalCards(id === 'all');
-    // setPruebaFiltro(id === 'mindfulness');
-    setSelectedCategory(id);
-    console.log('Button pressed with id:', id);
+    setFilter(id);
   }, []);
 
   return {
     navigation,
-    buttonId,
+    buttonCategory,
+    filteredItems,
     handlePressButton,
     showHorizontalCards,
     showVerticalCards,
-    // showPruebaFiltro,
-    selectedCategory,
+    filter,
+    loading,
+    error,
+    data,
   };
 };
 
