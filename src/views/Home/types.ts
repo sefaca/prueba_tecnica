@@ -10,8 +10,8 @@ export type RenderButtonParams = ListRenderItemInfo<ItemButton>;
 
 class CustomList extends Component<FlatListProps<ItemCard>> {}
 
-class CustomList1 extends Component<FlatListProps<ItemButton>> {}
+class CustomListMenu extends Component<FlatListProps<ItemButton>> {}
 
 export type ListType = typeof CustomList;
 
-export type ListType1 = typeof CustomList1;
+export type ListTypeMenu = typeof CustomListMenu;

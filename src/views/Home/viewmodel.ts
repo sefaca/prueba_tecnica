@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useCallback, useState} from 'react';
 import {GET_ITEMS} from '../../common/data/apollo/generated/nodes';
-import {Lesson} from './modal';
+import {Lesson} from './model';
 
 const useViewModel = () => {
   const {loading, error, data} = useQuery(GET_ITEMS);

@@ -50,5 +50,10 @@ export const MainDescription = styled(Text).attrs({
 `;
 
 export const ArrowContainer = styled.View`
-  padding: 0 20px 70px 20px;
+  position: absolute;
+  bottom: 45px;
+  right: 50px;
+  height: 10px;
+  width: 10px;
+  align-self: flex-end;
 `;
