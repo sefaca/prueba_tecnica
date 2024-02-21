@@ -7,7 +7,7 @@ export const Container = styled.View`
   flex-direction: row;
   background-color: ${({theme}) => theme.colors.purpleMiddle};
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding-right: 10px;
 `;
 

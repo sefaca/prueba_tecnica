@@ -1,11 +1,3 @@
-import type {ImageSourcePropType, StyleProp, ViewStyle} from 'react-native';
+import type {MainStackScreenProps} from '../../core/navigation/types';
 
-export type Props = {
-  id: string;
-  image: ImageSourcePropType;
-  title: string;
-  titleDescription: string;
-  name: string;
-  description: string;
-  style?: StyleProp<ViewStyle>;
-};
+export type Props = MainStackScreenProps<'Detail'>;

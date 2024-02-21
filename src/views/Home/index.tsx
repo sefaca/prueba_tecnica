@@ -6,91 +6,111 @@ import {
   Container,
   flatListStyleButtons,
   flatListStyleCards,
-  menuHorizontalSeparator,
+  MenuHorizontalSeparator,
+  List,
+  MenuList,
 } from './styles';
 import HomeCard from '../../common/ui/components/Cards/HomeCard';
-import {FlatList} from 'react-native';
-import {
-  BUTTONS_DATA,
-  CARDS_HORIZONTAL_DATA,
-  CARDS_VERTICAL_DATA,
-} from './constants';
+import {Text} from 'react-native';
+import {BUTTONS_DATA} from './constants';
 import type {RenderCardParams, RenderButtonParams} from './types';
 import useViewModelDefault from './viewmodel';
 import HorizontalCard from '../../common/ui/components/Cards/HorizontalCard';
 
 const Home = ({useViewModel = useViewModelDefault}) => {
-  const {buttonId, handlePressButton, showVerticalCards, showHorizontalCards} =
-    useViewModel();
+  const {
+    buttonCategory,
+    filteredItems,
+    handlePressButton,
+    handlePressCard,
+    showVerticalCards,
+    showHorizontalCards,
+    loading,
+    error,
+  } = useViewModel();
 
   const renderItemButton = useCallback(
     ({item}: RenderButtonParams) => (
       <Button
         id={item.id}
         title={item.title}
-        actived={item.id === buttonId}
+        actived={item.id === buttonCategory}
         onPress={handlePressButton}
       />
     ),
-    [buttonId, handlePressButton],
+    [buttonCategory, handlePressButton],
   );
 
   const renderItemCard = useCallback(
-    ({item}: RenderCardParams) => (
+    ({item, index}: RenderCardParams) => (
       <HomeCard
         id={item.id}
-        image={item.image}
+        image={`https://picsum.photos/id/${index}/200/200`}
+        category={item.category}
         title={item.title}
-        titleDescription={item.titleDescription}
-        name={item.name}
+        content={item.content}
+        author={item.author}
+        onPress={handlePressCard}
       />
     ),
-    [],
+    [handlePressCard],
   );
 
   const renderItemHorizontalCard = useCallback(
-    ({item}: RenderCardParams) => (
+    ({item, index}: RenderCardParams) => (
       <HorizontalCard
         id={item.id}
-        image={item.image}
+        image={`https://picsum.photos/id/${index}/150/150`}
+        category={item.category}
         title={item.title}
-        titleDescription={item.titleDescription}
-        name={item.name}
+        content={item.content}
+        author={item.author}
+        onPress={handlePressCard}
       />
     ),
-    [],
+    [handlePressCard],
   );
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error) {
+    return <Text>Error: {error.message}</Text>;
+  }
 
   return (
     <Container>
       <StatusBar />
       <Header title="Learn" />
-      <FlatList
+      <MenuList
         data={BUTTONS_DATA}
         renderItem={renderItemButton}
         keyExtractor={item => item.id}
         horizontal
-        ItemSeparatorComponent={menuHorizontalSeparator}
+        ItemSeparatorComponent={MenuHorizontalSeparator}
         style={flatListStyleButtons}
         showsHorizontalScrollIndicator={false}
       />
       {showVerticalCards && (
-        <FlatList
-          data={CARDS_VERTICAL_DATA}
+        <List
+          data={filteredItems}
           renderItem={renderItemCard}
           keyExtractor={item => item.id}
           numColumns={2}
           style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<Text>ASdsads</Text>}
         />
       )}
       {showHorizontalCards && (
-        <FlatList
-          data={CARDS_HORIZONTAL_DATA}
+        <List
+          data={filteredItems}
           renderItem={renderItemHorizontalCard}
           keyExtractor={item => item.id}
           style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<Text>Error</Text>}
         />
       )}
     </Container>

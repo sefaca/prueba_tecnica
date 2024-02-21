@@ -13,7 +13,7 @@ const variantStyles: Record<Variant, ReturnType<typeof css>> = {
     line-height: 56px;
   `,
   title2: css`
-    font-size: 15px;
+    font-size: 13px;
     font-weight: bold;
     letter-spacing: 0.7px;
     text-transform: uppercase;
@@ -27,7 +27,7 @@ const variantStyles: Record<Variant, ReturnType<typeof css>> = {
     font-weight: bold;
   `,
   body1: css`
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
   `,
   body2: css`

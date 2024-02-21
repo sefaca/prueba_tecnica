@@ -10,36 +10,26 @@ import {
 } from './styles';
 import type {Props} from './types';
 import {TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import type {StackParamList} from '../../../../../core/navigation/Tabs/index';
+import useIdCallback from '../../../utils/useIdCallback';
 
 const HomeCard: FC<Props> = ({
   id,
   image,
+  category,
   title,
-  titleDescription,
-  name,
+  author,
+  onPress,
   style,
 }) => {
-  const navigation = useNavigation<StackNavigationProp<StackParamList>>();
-  const handlePress = () => {
-    navigation.navigate('Detail', {
-      id,
-      image,
-      title,
-      titleDescription,
-      name,
-    });
-  };
+  const handleOnPress = useIdCallback(onPress, id);
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={handleOnPress}>
       <Container style={style}>
-        <ImageCardHorizontal source={image} />
-        <TitleCategory>{title}</TitleCategory>
-        <TextDescrition>{titleDescription}</TextDescrition>
-        <NameAuthor>{name}</NameAuthor>
+        <ImageCardHorizontal source={{uri: image}} />
+        <TitleCategory>{category.title}</TitleCategory>
+        <TextDescrition>{title}</TextDescrition>
+        <NameAuthor>{author}</NameAuthor>
       </Container>
     </TouchableOpacity>
   );

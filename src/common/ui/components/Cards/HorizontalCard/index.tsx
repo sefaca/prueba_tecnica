@@ -11,37 +11,27 @@ import {
 } from './styles';
 import type {Props} from './types';
 import {TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import type {StackParamList} from '../../../../../core/navigation/Tabs/index';
+import useIdCallback from '../../../utils/useIdCallback';
 
 const HorizontalCard: FC<Props> = ({
   id,
   image,
+  category,
   title,
-  titleDescription,
-  name,
+  author,
+  onPress,
   style,
 }) => {
-  const navigation = useNavigation<StackNavigationProp<StackParamList>>();
-  const handlePress = () => {
-    navigation.navigate('Detail', {
-      id,
-      image,
-      title,
-      titleDescription,
-      name,
-    });
-  };
+  const handleOnPress = useIdCallback(onPress, id);
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={handleOnPress}>
       <Container style={style}>
-        <ImageCardHorizontal source={image} />
+        <ImageCardHorizontal source={{uri: image}} />
         <ContainerData>
-          <TitleCategory>{title}</TitleCategory>
-          <TextDescrition numberOfLines={2}>{titleDescription}</TextDescrition>
-          <NameAuthor>{name}</NameAuthor>
+          <TitleCategory>{category.title}</TitleCategory>
+          <TextDescrition numberOfLines={2}>{title}</TextDescrition>
+          <NameAuthor>{author}</NameAuthor>
         </ContainerData>
       </Container>
     </TouchableOpacity>

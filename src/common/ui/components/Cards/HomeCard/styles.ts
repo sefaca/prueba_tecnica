@@ -4,7 +4,7 @@ import {Image} from 'react-native';
 
 export const Container = styled.View`
   width: 170px;
-  height: 360px;
+  height: 280px;
   background-color: ${({theme}) => theme.colors.purpleMiddle};
   border-radius: 8px;
   margin-right: 13px;
@@ -30,13 +30,14 @@ export const TextDescrition = styled(Text).attrs({
 })`
   color: ${({theme}) => theme.colors.white};
   padding: 0 15px 5px 15px;
+  height: 180px;
 `;
 
 export const NameAuthor = styled(Text).attrs({
   variant: 'body2',
 })`
   color: ${({theme}) => theme.colors.softWhite};
-  padding: 330px 15px 5px 15px;
+  padding: 250px 15px 5px 15px;
   margin-bottom: 5px;
   position: absolute;
 `;

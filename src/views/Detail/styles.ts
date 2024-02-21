@@ -34,7 +34,9 @@ export const NameAuthor = styled(Text).attrs({
   margin-bottom: 5px;
 `;
 
-export const ImageDetail = styled(Image)`
+export const ImageDetail = styled(Image).attrs({
+  resizeMode: 'stretch',
+})`
   width: 100%;
   height: 300px;
   border-radius: 8px;
@@ -46,4 +48,8 @@ export const MainDescription = styled(Text).attrs({
 })`
   color: ${({theme}) => theme.colors.white};
   padding: 20px 15px 20px 15px;
+`;
+
+export const ArrowContainer = styled.View`
+  padding: 0 20px 70px 20px;
 `;
