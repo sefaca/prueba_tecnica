@@ -2,7 +2,7 @@ import type {Props as ItemButton} from '../../common/ui/components/Button/types'
 import type {ListRenderItemInfo} from 'react-native';
 import {Component} from 'react';
 import type {FlatListProps} from 'react-native';
-import {Lesson} from './modal';
+import {Lesson} from './model';
 
 export type RenderCardParams = ListRenderItemInfo<Lesson>;
 

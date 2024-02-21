@@ -1,5 +1,4 @@
-import React, {memo, useRef} from 'react';
-import type {FC} from 'react';
+import React, {useRef} from 'react';
 import StatusBar from '../../common/ui/components/StatusBar';
 import Header from '../../common/ui/components/Header';
 import {
@@ -11,13 +10,11 @@ import {
   // ImageDetail,
   // MainDescription,
 } from './styles';
-
 import {ScrollView} from 'react-native';
-// import useViewModelDefault from './viewmodel';
-import type {Props} from './types';
+import useViewModelDefault from './viewmodel';
 
-const Detail: FC<Props> = () => {
-  // const {goBack, handlePressFavorite} = useViewModel();
+const Detail = ({useViewModel = useViewModelDefault}) => {
+  const {goBack, handlePressFavorite} = useViewModel();
   const scrollViewRef = useRef(null);
 
   return (
@@ -27,8 +24,8 @@ const Detail: FC<Props> = () => {
         leftIcon="cross"
         rightIcon="heart"
         sizeIcon={35}
-        // onPressLeft={goBack}
-        // onPressRight={handlePressFavorite}
+        onPressLeft={goBack}
+        onPressRight={handlePressFavorite}
       />
       <ScrollView ref={scrollViewRef}>
         <MainContainer>
@@ -43,4 +40,4 @@ const Detail: FC<Props> = () => {
   );
 };
 
-export default memo(Detail);
+export default Detail;

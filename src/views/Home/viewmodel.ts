@@ -1,10 +1,12 @@
 import {useQuery} from '@apollo/client';
 import {useCallback, useState} from 'react';
 import {GET_ITEMS} from '../../common/data/apollo/generated/nodes';
-import {Lesson} from './modal';
-import {navigate} from '../../core/navigation/Tabs/services';
+import {Lesson} from './model';
+import {useNavigation} from '@react-navigation/native';
 
 const useViewModel = () => {
+  const {navigate} = useNavigation();
+
   const {loading, error, data} = useQuery(GET_ITEMS);
 
   const [buttonCategory, setButtonCategory] = useState('');
@@ -28,10 +30,12 @@ const useViewModel = () => {
     setFilter(id);
   }, []);
 
-  const handlePressCard = useCallback((id: string) => {
-    console.log(id);
-    navigate('Detail', {id});
-  }, []);
+  const handlePressCard = useCallback(
+    (id: string) => {
+      navigate('Detail', {id});
+    },
+    [navigate],
+  );
 
   return {
     navigate,

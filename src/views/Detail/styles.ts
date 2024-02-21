@@ -34,12 +34,13 @@ export const NameAuthor = styled(Text).attrs({
   margin-bottom: 5px;
 `;
 
-export const ImageDetail = styled(Image)`
+export const ImageDetail = styled(Image).attrs({
+  resizeMode: 'stretch',
+})`
   width: 100%;
   height: 300px;
   border-radius: 8px;
   padding: 0 0 20px 15px;
-  resizeMode: stretch;
 `;
 
 export const MainDescription = styled(Text).attrs({

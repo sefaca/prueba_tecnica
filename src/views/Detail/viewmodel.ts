@@ -1,15 +1,17 @@
 import {useCallback} from 'react';
-// import {useNavigation} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
 import {Props} from './types';
-import {goBack} from '../../core/navigation/Tabs/services';
+import {useNavigation} from '@react-navigation/native';
 
 const useViewModel = () => {
-  // const {goBack} = useNavigation();
+  const {goBack} = useNavigation();
+
   const {
     params: {id},
   } = useRoute<Props['route']>();
-  console.log('Detail Screen', id);
+
+  console.log('Dentro de la screen Detail', id);
+  // TODO: FILTRAR DEL ARRAY DE LESSONS, AQUELLA LESSON CUYO ID SEA IGUAL AL ID QUE RECIBIMOS POR PARAMS.
 
   const handlePressFavorite = useCallback(() => {}, []);
 
