@@ -1,9 +1,8 @@
 import {useQuery} from '@apollo/client';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {useCallback, useState} from 'react';
 import {GET_ITEMS} from '../../common/data/apollo/generated/nodes';
 import {Lesson} from './modal';
+import {navigate} from '../../core/navigation/Tabs/services';
 
 const useViewModel = () => {
   const {loading, error, data} = useQuery(GET_ITEMS);
@@ -13,9 +12,7 @@ const useViewModel = () => {
   const [showVerticalCards, setShowVerticalCards] = useState(true);
   const [filter, setFilter] = useState('all');
 
-  const navigation = useNavigation<StackNavigationProp<StackParamList>>();
-
-  const apiData = data?.items || ([] as Lesson[]);
+  const apiData = data?.items as Lesson[];
 
   const filteredItems =
     filter === 'all'
@@ -31,11 +28,17 @@ const useViewModel = () => {
     setFilter(id);
   }, []);
 
+  const handlePressCard = useCallback((id: string) => {
+    console.log(id);
+    navigate('Detail', {id});
+  }, []);
+
   return {
-    navigation,
+    navigate,
     buttonCategory,
     filteredItems,
     handlePressButton,
+    handlePressCard,
     showHorizontalCards,
     showVerticalCards,
     filter,

@@ -11,7 +11,7 @@ import {
 } from './styles';
 import type {Props} from './types';
 import {TouchableOpacity} from 'react-native';
-import useViewModel from '../../../../../views/Home/viewmodel';
+import useIdCallback from '../../../utils/useIdCallback';
 
 const HorizontalCard: FC<Props> = ({
   id,
@@ -19,28 +19,17 @@ const HorizontalCard: FC<Props> = ({
   category,
   title,
   author,
-  content,
+  onPress,
   style,
 }) => {
-  const {handlePressButton, navigation} = useViewModel();
-  const handlePress = () => {
-    handlePressButton(id);
-    navigation.navigate('Detail', {
-      id,
-      image,
-      category,
-      title,
-      content,
-      author,
-    });
-  };
+  const handleOnPress = useIdCallback(onPress, id);
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={handleOnPress}>
       <Container style={style}>
         <ImageCardHorizontal source={{uri: image}} />
         <ContainerData>
-          <TitleCategory>{category}</TitleCategory>
+          <TitleCategory>{category.title}</TitleCategory>
           <TextDescrition numberOfLines={2}>{title}</TextDescrition>
           <NameAuthor>{author}</NameAuthor>
         </ContainerData>
