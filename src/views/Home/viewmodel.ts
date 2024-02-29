@@ -32,9 +32,12 @@ const useViewModel = () => {
 
   const handlePressCard = useCallback(
     (id: string) => {
-      navigate('Detail', {id});
+      const selectedLesson = apiData.find(lesson => lesson.id === id);
+      if (selectedLesson) {
+        navigate('Detail', {id: selectedLesson.id, lesson: selectedLesson});
+      }
     },
-    [navigate],
+    [apiData, navigate],
   );
 
   return {

@@ -4,18 +4,28 @@ import Header from '../../common/ui/components/Header';
 import {
   Container,
   MainContainer,
-  // TitleCategory,
-  // TitleDescrition,
-  // NameAuthor,
-  // ImageDetail,
-  // MainDescription,
+  TitleCategory,
+  TitleDescrition,
+  NameAuthor,
+  ImageDetail,
+  MainDescription,
 } from './styles';
 import {ScrollView} from 'react-native';
 import useViewModelDefault from './viewmodel';
+import {RouteProp} from '@react-navigation/native';
+import {ScreensParams} from '../../core/navigation/types';
 
-const Detail = ({useViewModel = useViewModelDefault}) => {
-  const {goBack, handlePressFavorite} = useViewModel();
+type DetailRouteProp = RouteProp<ScreensParams, 'Detail'>;
+
+interface DetailProps {
+  route: DetailRouteProp;
+}
+
+const Detail: React.FC<DetailProps> = ({route}) => {
+  const {goBack} = useViewModelDefault();
   const scrollViewRef = useRef(null);
+
+  const {category, title, author, image, content} = route.params.lesson;
 
   return (
     <Container>
@@ -25,15 +35,14 @@ const Detail = ({useViewModel = useViewModelDefault}) => {
         rightIcon="heart"
         sizeIcon={35}
         onPressLeft={goBack}
-        onPressRight={handlePressFavorite}
       />
       <ScrollView ref={scrollViewRef}>
         <MainContainer>
-          {/* <TitleCategory>{category}</TitleCategory>
+          <TitleCategory>{category.title}</TitleCategory>
           <TitleDescrition>{title}</TitleDescrition>
           <NameAuthor>{author}</NameAuthor>
           <ImageDetail source={{uri: image}} />
-          <MainDescription>{content}</MainDescription> */}
+          <MainDescription>{content}</MainDescription>
         </MainContainer>
       </ScrollView>
     </Container>
