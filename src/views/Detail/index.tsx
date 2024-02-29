@@ -15,6 +15,7 @@ import {ScrollView} from 'react-native';
 import useViewModelDefault from './viewmodel';
 import {RouteProp} from '@react-navigation/native';
 import {ScreensParams} from '../../core/navigation/types';
+import Icon from '../../common/ui/components/Icon';
 
 type DetailRouteProp = RouteProp<ScreensParams, 'Detail'>;
 
@@ -23,7 +24,7 @@ interface DetailProps {
 }
 
 const Detail: React.FC<DetailProps> = ({route}) => {
-  const {goBack} = useViewModelDefault();
+  const {goBack, handleScroll, isScrolled, scrollToTop} = useViewModelDefault();
   const scrollViewRef = useRef(null);
 
   const {category, title, author, image, content} = route.params.lesson;

@@ -8,6 +8,7 @@ const useViewModel = () => {
   const handlePressFavorite = useCallback(() => {}, []);
   const scrollViewRef = useRef<ScrollView | null>(null);
   const scrollToTop = () => {
+    console.log('Scrolling to top');
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true});
     }
