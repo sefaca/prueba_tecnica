@@ -4,6 +4,7 @@ import {ScrollView} from 'react-native';
 
 const useViewModel = () => {
   const {goBack} = useNavigation();
+
   const handlePressFavorite = useCallback(() => {}, []);
   const scrollViewRef = useRef<ScrollView | null>(null);
   const scrollToTop = () => {

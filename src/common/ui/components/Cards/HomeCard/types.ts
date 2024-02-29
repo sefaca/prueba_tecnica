@@ -1,11 +1,7 @@
 import type {StyleProp, ViewStyle} from 'react-native';
+import type {Lesson} from '../../../../../views/Home/model';
 
-export type Props = {
-  category: any;
-  title: string;
-  author: string;
-  content: string;
-  id: string;
-  image: any;
+export type Props = Lesson & {
+  onPress: (id: string) => void;
   style?: StyleProp<ViewStyle>;
 };

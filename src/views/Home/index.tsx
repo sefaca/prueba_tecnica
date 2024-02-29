@@ -15,6 +15,7 @@ const Home = ({useViewModel = useViewModelDefault}) => {
     buttonCategory,
     filteredItems,
     handlePressButton,
+    handlePressCard,
     showVerticalCards,
     showHorizontalCards,
     loading,
@@ -27,9 +28,7 @@ const Home = ({useViewModel = useViewModelDefault}) => {
         id={item.id}
         title={item.title}
         actived={item.id === buttonCategory}
-        onPress={() => {
-          handlePressButton(item.id);
-        }}
+        onPress={handlePressButton}
       />
     ),
     [buttonCategory, handlePressButton],
@@ -40,13 +39,14 @@ const Home = ({useViewModel = useViewModelDefault}) => {
       <HomeCard
         id={item.id}
         image={`https://picsum.photos/id/${index}/200/200`}
-        category={item.category.title}
+        category={item.category}
         title={item.title}
         content={item.content}
         author={item.author}
+        onPress={handlePressCard}
       />
     ),
-    [],
+    [handlePressCard],
   );
 
   const renderItemHorizontalCard = useCallback(
@@ -54,13 +54,14 @@ const Home = ({useViewModel = useViewModelDefault}) => {
       <HorizontalCard
         id={item.id}
         image={`https://picsum.photos/id/${index}/150/150`}
-        category={item.category.title}
+        category={item.category}
         title={item.title}
         content={item.content}
         author={item.author}
+        onPress={handlePressCard}
       />
     ),
-    [],
+    [handlePressCard],
   );
 
   if (loading) {

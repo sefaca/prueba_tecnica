@@ -1,11 +1,12 @@
 import {useQuery} from '@apollo/client';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {useCallback, useState} from 'react';
 import {GET_ITEMS} from '../../common/data/apollo/generated/nodes';
 import {Lesson} from './model';
+import {useNavigation} from '@react-navigation/native';
 
 const useViewModel = () => {
+  const {navigate} = useNavigation();
+
   const {loading, error, data} = useQuery(GET_ITEMS);
 
   const [buttonCategory, setButtonCategory] = useState('');
@@ -13,9 +14,7 @@ const useViewModel = () => {
   const [showVerticalCards, setShowVerticalCards] = useState(true);
   const [filter, setFilter] = useState('all');
 
-  const navigation = useNavigation<StackNavigationProp<StackParamList>>();
-
-  const apiData = data?.items || ([] as Lesson[]);
+  const apiData = data?.items as Lesson[];
 
   const filteredItems =
     filter === 'all'
@@ -31,11 +30,22 @@ const useViewModel = () => {
     setFilter(id);
   }, []);
 
+  const handlePressCard = useCallback(
+    (id: string) => {
+      const selectedLesson = apiData.find(lesson => lesson.id === id);
+      if (selectedLesson) {
+        navigate('Detail', {id: selectedLesson.id, lesson: selectedLesson});
+      }
+    },
+    [apiData, navigate],
+  );
+
   return {
-    navigation,
+    navigate,
     buttonCategory,
     filteredItems,
     handlePressButton,
+    handlePressCard,
     showHorizontalCards,
     showVerticalCards,
     filter,

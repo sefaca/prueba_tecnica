@@ -6,7 +6,7 @@ type Category = {
 export type Lesson = {
   id: string;
   title: string;
-  image: string;
+  image: any;
   author: string;
   category: Category;
   content: string;

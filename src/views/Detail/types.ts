@@ -1,11 +1,3 @@
-import type {StyleProp, ViewStyle} from 'react-native';
+import type {MainStackScreenProps} from '../../core/navigation/types';
 
-export type Props = {
-  id: string;
-  image: any;
-  title: string;
-  category: string;
-  author: string;
-  content: string;
-  style?: StyleProp<ViewStyle>;
-};
+export type Props = MainStackScreenProps<'Detail'>;

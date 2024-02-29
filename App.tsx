@@ -4,7 +4,7 @@ import {ApolloProvider} from '@apollo/client';
 import ThemeProvider from './src/common/ui/theme/provider';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import StatusBar from './src/common/ui/components/StatusBar';
-import MainNavigation from './src/core/navigation/Tabs';
+import MainNavigation from './src/core/navigation';
 import apolloClient from './src/core/apollo/client';
 
 const App: FC = () => (
