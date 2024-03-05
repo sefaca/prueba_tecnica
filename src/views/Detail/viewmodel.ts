@@ -1,21 +1,32 @@
-import {useCallback} from 'react';
-import {useRoute} from '@react-navigation/native';
-import {Props} from './types';
+import {useCallback, useRef, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {ScrollView} from 'react-native';
 
 const useViewModel = () => {
   const {goBack} = useNavigation();
 
-  const {
-    params: {id},
-  } = useRoute<Props['route']>();
-
-  console.log('Dentro de la screen Detail', id);
-  // TODO: FILTRAR DEL ARRAY DE LESSONS, AQUELLA LESSON CUYO ID SEA IGUAL AL ID QUE RECIBIMOS POR PARAMS.
-
   const handlePressFavorite = useCallback(() => {}, []);
+  const scrollViewRef = useRef<ScrollView | null>(null);
+  const scrollToTop = () => {
+    console.log('Scrolling to top');
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true});
+    }
+  };
+  const [isScrolled, setIsScrolled] = useState(false);
+  const handleScroll = (event: any) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    setIsScrolled(offsetY > 0);
+  };
 
-  return {goBack, handlePressFavorite};
+  return {
+    goBack,
+    handlePressFavorite,
+    scrollViewRef,
+    scrollToTop,
+    isScrolled,
+    handleScroll,
+  };
 };
 
 export default useViewModel;

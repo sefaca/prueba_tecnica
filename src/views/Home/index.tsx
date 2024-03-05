@@ -2,14 +2,7 @@ import React, {useCallback} from 'react';
 import StatusBar from '../../common/ui/components/StatusBar';
 import Header from '../../common/ui/components/Header/index';
 import Button from '../../common/ui/components/Button';
-import {
-  Container,
-  flatListStyleButtons,
-  flatListStyleCards,
-  MenuHorizontalSeparator,
-  List,
-  MenuList,
-} from './styles';
+import {Container, MenuHorizontalSeparator, List, MenuList} from './styles';
 import HomeCard from '../../common/ui/components/Cards/HomeCard';
 import {Text} from 'react-native';
 import {BUTTONS_DATA} from './constants';
@@ -89,7 +82,6 @@ const Home = ({useViewModel = useViewModelDefault}) => {
         keyExtractor={item => item.id}
         horizontal
         ItemSeparatorComponent={MenuHorizontalSeparator}
-        style={flatListStyleButtons}
         showsHorizontalScrollIndicator={false}
       />
       {showVerticalCards && (
@@ -98,9 +90,8 @@ const Home = ({useViewModel = useViewModelDefault}) => {
           renderItem={renderItemCard}
           keyExtractor={item => item.id}
           numColumns={2}
-          style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
-          ListEmptyComponent={<Text>ASdsads</Text>}
+          ListEmptyComponent={<Text>Error</Text>}
         />
       )}
       {showHorizontalCards && (
@@ -108,7 +99,6 @@ const Home = ({useViewModel = useViewModelDefault}) => {
           data={filteredItems}
           renderItem={renderItemHorizontalCard}
           keyExtractor={item => item.id}
-          style={flatListStyleCards}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={<Text>Error</Text>}
         />

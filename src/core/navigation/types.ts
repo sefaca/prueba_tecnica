@@ -1,4 +1,5 @@
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Lesson} from '../../views/Home/model';
 
 declare global {
   namespace ReactNavigation {
@@ -8,6 +9,7 @@ declare global {
 
 type DetailsParams = {
   id: string;
+  lesson: Lesson;
 };
 
 export type ScreensParams = {
