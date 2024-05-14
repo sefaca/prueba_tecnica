@@ -68,6 +68,12 @@ You've successfully run and modified your React Native App. :partying_face:
 
 If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
+# Device Demonstration
+
+Visual demonstration of the application running on a Pixel 4 device, showing its performance and appearance in a real environment.
+
+https://github.com/sefaca/prueba_tecnica/assets/32002286/4d6d43ce-35ea-47f3-bc61-f750140c04a5
+
 # Learn More
 
 To learn more about React Native, take a look at the following resources:
